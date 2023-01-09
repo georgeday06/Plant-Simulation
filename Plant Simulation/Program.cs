@@ -1,7 +1,7 @@
-﻿Console.WriteLine("Program Loaded");
+Console.WriteLine("Program Loaded");
 Console.WriteLine("How many times would you like the simulation to run?");
 int Years = Convert.ToInt32(Console.ReadLine());
-string[,] Board = new string[36,20];
+string[,] Board = new string[36, 20];
 int RanYears = 0;
 int currentSeason = 0;
 string currentSeasonString = "Spring";
@@ -22,6 +22,8 @@ while (Finished == false)
     currentSeasonString = SeasonStringUpdate(currentSeason, currentSeasonString);
     Winter(Board);
     printBoard(Board, currentSeasonString, RanYears);
+    currentSeason = SeasonUpdate(Years, RanYears, currentSeason);
+    currentSeasonString = SeasonStringUpdate(currentSeason, currentSeasonString);
     Finished = YearCheck(Years, RanYears, currentSeason);
 }
 
@@ -54,10 +56,10 @@ static void printBoard(string[,] b, string currentSeasonString, int RanYears)
     {
         for (int col = 0; col < 36; col++)
         {
-        Console.Write(b[col, row]);
+            Console.Write(b[col, row]);
         }
-    Console.WriteLine();
-        
+        Console.WriteLine();
+
     }
     Console.WriteLine("Please any key to continue.");
     Console.ReadLine();
@@ -93,7 +95,7 @@ static string SeasonStringUpdate(int currentSeason, string currentSeasonString)
 static bool YearCheck(int Years, int RanYears, int currentSeason)
 {
     bool Finished;
-    if (RanYears > Years)
+    if (RanYears >= Years)
     {
         Finished = true;
     }
